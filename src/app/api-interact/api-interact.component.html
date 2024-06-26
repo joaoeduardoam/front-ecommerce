@@ -1,12 +1,13 @@
-<!-- FORM -->
-<form>
-    <input type="number" class="form-control" readonly >
-    <input type="text"   class="form-control" placeholder="Name">
-    <input type="number" class="form-control" placeholder="Value">
 
-    <input type="button" class="btn btn-primary" value="Save"> 
-    <input type="button" class="btn btn-primary" value="Update"> 
-    <input type="button" class="btn btn-primary" value="Remove"> 
+<!-- FORM -->
+<form [formGroup]="form">
+    <input type="number" class="form-control" formControlName="id" readonly >
+    <input type="text"   class="form-control" formControlName="name" placeholder="Name">
+    <input type="number" class="form-control" formControlName="value" placeholder="Value">
+
+    <input type="button" class="btn btn-primary" value="Save"   *ngIf="btnSave" (click)="save()"> 
+    <input type="button" class="btn btn-primary" value="Update" *ngIf="!btnSave" (click)="update()"> 
+    <input type="button" class="btn btn-primary" value="Remove" *ngIf="!btnSave" (click)="remove()"> 
 </form>
 
 <!-- TABLE -->
@@ -21,21 +22,24 @@
     </thead>
 
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let p of products; let idx = index">
+            <td>{{idx+1}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.value}}</td>
+            <td><button class="btn btn-primary" (click)="selectProduct(idx)">Select</button></td>
         </tr>
     </tbody>
 </table>
 
-<!-- Button trigger modal -->
+<!-- Button trigger modal 
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
   </button>
-  
-  <!-- Modal -->
+
+  -->
+  <!-- Modal 
+
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -53,3 +57,5 @@
       </div>
     </div>
   </div>
+
+-->
